@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -30,7 +30,7 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
-//export const signInWithEmailPassword = () => signInWithEmailAndPassword(auth, email, password);
+//export const signInWithEmailPassword = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo={}) => {
@@ -68,5 +68,13 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if(!email || !password) return;
 
     return await createUserWithEmailAndPassword(auth, email, password)
+
+}
+
+export const signInAuthUser = async (email, password) => {
+
+    if(!email || !password) return;
+
+    return await signInWithEmailAndPassword(auth, email, password)
 
 }

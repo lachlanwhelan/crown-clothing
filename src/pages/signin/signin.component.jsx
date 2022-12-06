@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { getRedirectResult } from "firebase/auth";
 import { auth, createUserDocumentFromAuth, signInWithGooglePopUp, signInWithGoogleRedirect } from "../../utils/firebase.utils";
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import SignInForm from "../../components/sign-in-form/sign-in-form.component";
+import './signin.styles.scss';
 
 const Signin = () => {
     //auth keeps track of authentication states - authentication memory even if page redirects
@@ -35,13 +37,13 @@ const Signin = () => {
 
         const userDocRef = await createUserDocumentFromAuth(user);
     }
+    
     return(
-        <div>
-            SIGNIN
-            <button onClick={logGoogleUser}>Sign in with google</button>
-            <button onClick={logGoogleRedirectUser}>Sign in with google</button>
-
-           <SignUpForm/>
+        <div className="auth-container">
+{/*             <button onClick={logGoogleUser}>Sign in with google</button>
+            <button onClick={logGoogleRedirectUser}>Sign in with google</button> */}
+                <SignInForm/>
+                <SignUpForm/>
         </div>
     )
 }
