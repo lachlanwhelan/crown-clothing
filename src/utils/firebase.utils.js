@@ -1,6 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { 
+    getAuth, 
+    signInWithRedirect,
+    signInWithPopup,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut, 
+    onAuthStateChanged } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -36,16 +44,16 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider)
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo={}) => {
     if(!userAuth) return;
 
-    console.log(userAuth);
+    //console.log(userAuth);
 
     const userDocRef = doc(db, 'users', userAuth.uid);
 
-    console.log(userDocRef);
+    //console.log(userDocRef);
 
     const userSnapshot = await getDoc(userDocRef);
 
-    console.log(userSnapshot);
-    console.log(userSnapshot.exists()); //you can use exists method to see if that reference already exists in the database
+    //console.log(userSnapshot);
+    //console.log(userSnapshot.exists()); //you can use exists method to see if that reference already exists in the database
 
     if(!userSnapshot.exists()){
         //create user
@@ -78,3 +86,7 @@ export const signInAuthUser = async (email, password) => {
     return await signInWithEmailAndPassword(auth, email, password)
 
 }
+
+export const signOutAuthUser = async () => signOut(auth);
+
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

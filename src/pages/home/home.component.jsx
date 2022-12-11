@@ -1,5 +1,6 @@
-import { Outlet } from "react-router-dom";
+
 import Directory from "../../components/directory/category.component";
+
 
 const Home = () => {
 
@@ -30,8 +31,6 @@ const Home = () => {
       "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
     }
   ]
-  
-
   return (
     <div className="home">
       <Directory categories={categories}/>

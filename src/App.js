@@ -1,9 +1,11 @@
+
 import { Route, Routes } from 'react-router-dom';
 import Contact from './pages/contact/contact.component';
 import Home from './pages/home/home.component';
 import Navigation from './pages/navigation/navigation.component';
 import Shop from './pages/shop/shop.component';
 import Signin from './pages/signin/signin.component';
+
 
 
 const App = () => {
