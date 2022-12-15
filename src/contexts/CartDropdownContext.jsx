@@ -69,7 +69,7 @@ const CartDropdownProvider = ({children}) => {
     const value = {isCartOpen, setIsCartOpen, addItemToCart, cartItems, cartCount, removeItemFromCart, cartTotal, clearItemFromCart};
 
 
-    //good practice to split effects based on focus/concern
+    //good practice to split effects based on focus/concern 
 
     useEffect(() => {
 
