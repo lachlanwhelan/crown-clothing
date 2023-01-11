@@ -7,10 +7,24 @@ import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './contexts/AuthContext';
 import CategoriesProvider from './contexts/CategoriesContext';
 import CartDropdownProvider from './contexts/CartDropdownContext';
+import { Provider } from 'react-redux';
+import { store, persistor } from './store/store';
+
+import { PersistGate } from 'redux-persist/integration/react';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <Provider store={store}>
+  <PersistGate persistor={persistor}>
+  <BrowserRouter>
+       <App />
+  </BrowserRouter>
+  </PersistGate>
+  </Provider>
+</React.StrictMode>
+ /*  <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <CategoriesProvider>
@@ -20,7 +34,7 @@ root.render(
         </CategoriesProvider>
       </AuthProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode> */
 );
 
 // If you want to start measuring performance in your app, pass a function
