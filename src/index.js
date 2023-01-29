@@ -1,6 +1,9 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
+import { Elements } from '@stripe/react-stripe-js';
+import { stripePromise } from './utils/stripe/stripe.utils';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
@@ -19,7 +22,9 @@ root.render(
   <Provider store={store}>
   <PersistGate persistor={persistor}>
   <BrowserRouter>
+  <Elements stripe={stripePromise}>   
        <App />
+  </Elements>
   </BrowserRouter>
   </PersistGate>
   </Provider>
